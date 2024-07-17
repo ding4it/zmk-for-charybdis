@@ -41,7 +41,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "EQUAL";
             #binding-cells = <0>;
-            bindings = <&kp EQUAL>;
+            bindings = <&kp MINUS>, <&kp EQUAL>;
         };
     };
 
