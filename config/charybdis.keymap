@@ -20,17 +20,51 @@
         };
     };
 
+    macros {
+        new_macro: new_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N1 &kp N4 &kp N5 &kp N2 &kp N3 &kp N6>;
+            label = "NEW_MACRO";
+            wait-ms = <40>;
+            tap-ms = <40>;
+        };
+
+        number: number {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none>;
+            label = "NUMBER";
+        };
+    };
+
+    behaviors {
+        quote: quote {
+            compatible = "zmk,behavior-tap-dance";
+            label = "QUOTE";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACKET>, <&kp RIGHT_BRACKET>;
+        };
+
+        equal: equal {
+            compatible = "zmk,behavior-tap-dance";
+            label = "EQUAL";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         Base {
             bindings = <
-&kp ESC         &kp N1   &kp N2  &kp N3          &kp N4        &kp N5            &kp N6          &kp N7           &kp N8     &kp N9   &kp N0       &kp BSPC
-&kp TAB         &kp Q    &kp W   &kp E           &kp R         &kp T             &kp Y           &kp U            &kp I      &kp O    &kp P        &kp BACKSLASH
-&kp LEFT_SHIFT  &kp A    &kp S   &kp D           &kp F         &kp G             &kp H           &kp J            &kp K      &kp L    &kp SEMI     &kp APOS
-&kp LCTRL       &lt 3 Z  &kp X   &kp C           &kp V         &kp B             &kp N           &kp M            &kp COMMA  &kp DOT  &lt 3 SLASH  &kp DELETE
-                                 &kp LEFT_ARROW  &kp UP_ARROW  &lt 1 LEFT_WIN    &lt 2 ENTER     &kp RIGHT_ARROW
-                                                 &kp LEFT_ALT  &kp SPACE         &kp DOWN_ARROW
+&kp ESC         &kp N1   &kp N2  &kp N3        &kp N4     &kp N5            &kp N6     &kp N7     &kp N8     &kp N9   &kp N0     &kp MINUS
+&kp TAB         &kp Q    &kp W   &kp E         &kp R      &kp T             &kp Y      &kp U      &kp I      &kp O    &kp P      &kp BACKSPACE
+&kp LCTRL       &kp A    &kp S   &kp D         &kp F      &kp G             &kp H      &kp J      &kp K      &kp L    &kp SEMI   &kp APOS
+&kp LEFT_SHIFT  &lt 2 Z  &kp X   &kp C         &kp V      &kp B             &kp N      &kp M      &kp COMMA  &kp DOT  &kp SLASH  &kp ENTER
+                                 &kp LEFT_ALT  &kp LBKT   &lt 1 LEFT_WIN    &kp GRAVE  &kp SPACE
+                                               &kp SPACE  &kp BSLH          &kp SPACE
             >;
 
             trackball-bindings = <&tmv_coarse>;
@@ -40,59 +74,22 @@
             bindings = <
 &kp TILDE         &kp EXCLAMATION  &kp HASH      &kp DOLLAR    &kp DOLLAR    &kp PERCENT    &kp CARET  &kp AMPERSAND  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDERSCORE
 &kp GRAVE         &kp NUMBER_1     &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp LBKT       &kp RBKT   &kp F1         &kp F2        &kp F3                &kp F4                 &kp DEL
-&kp LEFT_CONTROL  &kp NUMBER_5     &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8  &none          &kp BSLH   &kp F5         &kp F6        &kp F7                &kp F8                 &kp PAGE_UP
-&kp LSHFT         &kp NUMBER_9     &kp NUMBER_0  &kp MINUS     &kp EQUAL     &none          &trans     &kp F9         &kp F10       &kp F11               &kp F12                &kp PAGE_DOWN
+&kp LEFT_CONTROL  &kp NUMBER_5     &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8  &none          &kp BSLH   &kp F5         &kp F6        &kp F7                &kp F8                 &sys_reset
+&kp LSHFT         &kp NUMBER_9     &kp NUMBER_0  &kp MINUS     &kp EQUAL     &none          &trans     &kp F9         &kp F10       &kp F11               &kp F12                &bootloader
                                                  &kp LEFT_WIN  &kp SPACE     &trans         &kp ENTER  &kp BACKSPACE
-                                                               &none         &none          &trans
-            >;
-        };
-
-        layer_2 {
-            bindings = <
-&kp F12           &kp F1      &kp F2      &kp F3         &kp F4         &kp F5          &kp F6        &kp F7         &kp F8    &kp F9     &kp F10  &kp F11
-&kp LS(GRAVE)     &kp LS(N1)  &kp LS(N2)  &kp LS(N3)     &kp LS(N4)     &kp LS(LBKT)    &kp LS(RBKT)  &none          &trans    &none      &none    &trans
-&kp LEFT_CONTROL  &kp LS(N5)  &kp LS(N6)  &kp LS(N7)     &kp LS(N8)     &none           &kp LS(BSLH)  &trans         &kp UP    &trans     &trans   &trans
-&kp LEFT_SHIFT    &kp LS(N9)  &kp LS(N0)  &kp LS(MINUS)  &kp LS(EQUAL)  &none           &none         &kp LEFT       &kp DOWN  &kp RIGHT  &none    &trans
-                                          &kp LEFT_ALT   &kp SPACE      &kp ENTER       &trans        &kp BACKSPACE
-                                                         &trans         &trans          &none
+                                                               &none         &number        &trans
             >;
         };
 
         Mouse {
             bindings = <
-&none        &none         &none         &none         &none      &none         &none       &none      &none         &none         &none         &none
-&none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &none      &bt BT_CLR    &bt BT_CLR  &none      &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &none
-&none        &trans        &trans        &mkp MCLK     &trans     &none         &none       &trans     &mkp MCLK     &trans        &trans        &none
-&bootloader  &trans        &mkp RCLK     &mo 4         &mkp LCLK  &mo 5         &mo 5       &mkp LCLK  &mo 4         &mkp RCLK     &trans        &bootloader
-                                         &mo 5         &mkp LCLK  &mkp RCLK     &mkp RCLK   &mkp LCLK
-                                                       &none      &trans        &trans
+&none  &kp F1  &kp F2   &kp F3   &kp F4   &none    &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &none            &bt BT_CLR   &none
+&none  &kp F5  &kp F6   &kp F7   &kp F8   &none    &none         &none           &none         &none            &none        &none
+&none  &kp F9  &kp F10  &kp F11  &kp F12  &none    &kp LEFT      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &kp PAGE_UP  &kp PAGE_DOWN
+&none  &none   &none    &none    &none    &none    &none         &mkp LCLK       &mkp MCLK     &mkp RCLK        &mkp MB4     &mkp MB5
+                        &none    &none    &none    &none         &none
+                                 &none    &none    &trans
             >;
-        };
-
-        layer_4 {
-            bindings = <
-&trans  &trans  &trans     &trans     &trans     &trans       &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans       &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans     &mkp MCLK  &trans     &trans       &trans     &trans     &mkp MCLK  &trans     &trans  &trans
-&trans  &trans  &mkp RCLK  &trans     &mkp LCLK  &trans       &trans     &mkp LCLK  &trans     &mkp RCLK  &trans  &trans
-                           &trans     &mkp LCLK  &mkp RCLK    &mkp RCLK  &mkp LCLK
-                                      &trans     &trans       &trans
-            >;
-
-            trackball-bindings = <&tsl>;
-        };
-
-        layer_5 {
-            bindings = <
-&trans  &trans  &trans     &trans     &trans     &trans       &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans       &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans     &mkp MCLK  &trans     &trans       &trans     &trans     &mkp MCLK  &trans     &trans  &trans
-&trans  &trans  &mkp RCLK  &trans     &mkp LCLK  &trans       &trans     &mkp LCLK  &trans     &mkp RCLK  &trans  &trans
-                           &trans     &mkp LCLK  &mkp RCLK    &mkp RCLK  &mkp LCLK
-                                      &trans     &trans       &trans
-            >;
-
-            trackball-bindings = <&tmv_fine>;
         };
     };
 };
