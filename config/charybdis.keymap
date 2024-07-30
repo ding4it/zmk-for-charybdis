@@ -46,8 +46,8 @@
 &kp TAB         &kp Q    &kp W   &kp E        &kp R         &kp T           &kp Y        &kp U      &kp I      &kp O    &kp P      &kp BACKSPACE
 &kp LCTRL       &kp A    &kp S   &kp D        &kp F         &kp G           &kp H        &kp J      &kp K      &kp L    &kp SEMI   &kp ENTER
 &kp LEFT_SHIFT  &lt 1 Z  &kp X   &kp C        &kp V         &kp B           &kp N        &kp M      &kp COMMA  &kp DOT  &kp SLASH  &kp APOS
-                                 &lt 2 SPACE  &kp SPACE     &kp LEFT_WIN    &lt 2 GRAVE  &kp SPACE
-                                              &kp LEFT_ALT  &kp BSLH        &brace
+                                 &lt 2 SPACE  &kp LEFT_ALT  &kp LEFT_WIN    &lt 2 GRAVE  &kp SPACE
+                                              &kp SPACE     &kp BSLH        &brace
             >;
 
             trackball-bindings = <&tmv_coarse>;
