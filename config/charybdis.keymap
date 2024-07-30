@@ -68,7 +68,7 @@
             bindings = <
 &none               &none      &none    &none    &none    &bootloader    &bootloader     &none           &none         &none            &none  &none
 &none               &kp LA(Q)  &none    &none    &none    &none          &none           &none           &none         &none            &none  &none
-&none               &kp HOME   &kp END  &kp DEL  &none    &none          &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &none  &none
+&kp LA(LCTRL)       &kp HOME   &kp END  &kp DEL  &none    &none          &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &none  &none
 &kp LA(LEFT_SHIFT)  &kp F9     &kp F10  &kp F11  &kp F12  &none          &kp PAGE_UP     &kp PAGE_DOWN   &none         &none            &none  &none
                                         &none    &none    &none          &none           &number
                                                  &none    &none          &none
